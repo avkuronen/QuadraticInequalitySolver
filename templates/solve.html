@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block main %}
+    <form action="{% url 'result' %}" method="POST">
+        {% csrf_token %}
+        <div class="solve-div">
+            <h4 style="margin-right: 1%; margin-top: 1%; color: bisque;">Введите коэффициенты:</h4>
+            <input class="coefficient form-control mr-2" type="text" name="k_a" id="k_a" placeholder="Коэффициент a" required>
+            <input class="coefficient form-control mr-2" type="text" name="k_b" id="k_b" placeholder="Коэффициент b" required>
+            <input class="coefficient form-control mr-2" type="text" name="k_c" id="k_c" placeholder="Коэффициент c" required>
+            <div style="display: flex; flex-direction: column;">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="less-more" id="more" onclick="{{ click_more_js }}" checked>
+                    <label class="form-check-label less-more-label" id="more_val" for="more">> 0</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="less-more" id="less" onclick="{{ click_less_js }}">
+                    <label class="form-check-label less-more-label" id="less_val" for="less">< 0</label>
+                </div>
+            </div>
+            <input type="hidden" name="is_d" id="is_d" value="false">
+            <input type="hidden" name="sign_of" id="sign_of" value="more;strict">
+            <button type="submit" class="btn btn-success" style="margin-left: 1%; margin-right: 1%;">Решить</button>
+        </div>
+    </form>
+    <div class="solve-div" style="margin-top: 1%;">
+        <button class="btn btn-danger" onclick="{{ clear_js }}">Очистить</button>
+        <div class="checks-m">
+            <div class="form-check form-switch checks-m-switch">
+                <input class="form-check-input" type="checkbox" id="isDiscriminant" style="margin-right: 1%;" onclick="{{ is_disc_js }}">
+                <label class="form-check-label checks-m-label" for="isDiscriminant">Показать нахождение дискриминанта</label>
+            </div>
+            <div class="form-check form-switch checks-m-switch">
+                <input class="form-check-input" type="checkbox" id="isStrict" style="margin-right: 1%;" onclick="{{ is_sgn_strict_js }}" checked>
+                <label class="form-check-label checks-m-label" for="isStrict">Знак строгий</label>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block back %}
+    <ul class="nav nav-items-lk" style="margin-top: 1.5%;">
+        <li class="nav-item"><a class="btn btn-light nav-link active" href="{% url 'manual' %}">Как пользоваться</a></li>
+        <li class="nav-item"><a class="btn btn-light nav-link active" href="https://github.com/avkuronen/QuadraticInequalitySolver" target="_blank">Исходный код</a></li>
+        <li class="nav-item"><a class="btn btn-light nav-link disabled">Защищено свободной лицензией GNU GPL</a></li>
+        <li><h1 style="color: rgb(131, 163, 140);">Manjaro is the best</h1></li>
+    </ul>
+{% endblock %}

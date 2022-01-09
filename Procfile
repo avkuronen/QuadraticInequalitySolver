@@ -1,0 +1,1 @@
+web: gunicorn QuadraticUnequationSolver.wsgi --log-file -

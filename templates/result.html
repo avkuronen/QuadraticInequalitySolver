@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block main %}
+    <div class="solve-div" style="flex-direction: column;">
+        <h1 style="color: rgb(153, 142, 129);">Решение неравенства {{ solve_to }}</h1>
+        <ul class="list-group" style="margin-top: 1%; margin-bottom: 1%; margin-right: 1%;">
+            <li class="list-group-item active">{{ solve_to }}</li>
+            {% for step in steps %}
+                <li class="list-group-item list-group-item-success">{{ step }}</li>
+            {% endfor %}
+        </ul>
+        {% load static %}
+        <img style="width:500px; height:100px;" src="{% static img %}" alt="График">
+    </div>
+{% endblock %}
+{% block back %}
+    <a class="btn btn-danger" style="margin: 1%;" href="{% url 'solve' %}">Назад</a>
+    <ul class="nav nav-items-lk" style="margin-top: 1.5%;">
+        <li class="nav-item"><a class="btn btn-light nav-link active" href="{% url 'manual' %}">Как пользоваться</a></li>
+        <li class="nav-item"><a class="btn btn-light nav-link active" href="https://github.com/avkuronen/QuadraticInequalitySolver" target="_blank">Исходный код</a></li>
+        <li class="nav-item"><a class="btn btn-light nav-link disabled">Защищено свободной лицензией GNU GPL</a></li>
+    </ul>
+{% endblock %}
