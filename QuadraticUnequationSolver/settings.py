@@ -1,8 +1,9 @@
 from pathlib import Path
+from os import getenv
 import dj_database_url
 db_from_env = dj_database_url.config()
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-$!)9fvzxeyyok#dodeukdrwg@ne6lx^x7z&stsxqagul2*p$82'
+SECRET_KEY = getenv('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
